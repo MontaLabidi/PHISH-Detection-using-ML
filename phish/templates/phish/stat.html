@@ -1,0 +1,75 @@
+<!DOCTYPE html><!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>PHISH ROD</title>
+      {% load static %}
+
+      <link rel="stylesheet" type="text/css" href="{% static 'phish/css/bootstrap.css' %}" />
+	  <link rel="stylesheet" type="text/css" href="{% static 'phish/css/main.css' %}" />
+ 	  <link rel="stylesheet" type="text/css" href="{% static 'phish/css/font-awesome.min.css' %}" />
+	  <script src="{% static 'phish/js/jquery.min.js' %}"></script>
+	  <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+	  <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
+		<script src="http://d3js.org/d3.v3.min.js"></script>
+	   <script src="//d3js.org/d3.v4.min.js" charset="utf-8"></script>
+   <script type="text/javascript" src="{% static 'fusioncharts/fusioncharts.js' %}"></script>
+   <script type="text/javascript" src="{% static 'fusioncharts/themes/fusioncharts.theme.fint.js' %}"></script>
+</head>
+
+  <body data-spy="scroll" data-offset="0" data-target="#theMenu">
+
+	<!-- Menu -->
+	<nav class="menu" id="theMenu">
+       <!--   <div id="chart-1">{{ output|safe }}</div> -->
+
+		<div class="menu-wrap">
+                   <!--   <div id="chart-1">{{ output|safe }}</div>-->
+
+			<h1 class="logo"><a href="index.html#home">PHISH ROD</a></h1>
+			<i class="icon-remove menu-close"></i>
+			<a href="home" class="smoothScroll">Home</a>
+			<a href="home#about" class="smoothScroll">About Us</a>
+			<a href="stat" class="smoothScroll">Statistics</a>
+			<a href="home#contact" class="smoothScroll">Contact Us</a>
+
+			<a href="#"><i class="icon-facebook"></i></a>
+			<a href="#"><i class="icon-envelope"></i></a>
+		</div>
+
+		<!-- Menu button -->
+		<div id="menuToggle"><i class="icon-reorder"></i></div>
+	</nav>
+  <section id="stat" name="stat"></section>
+	<div id="headerwrap">
+		<div class="container">
+            <div class="row" id="chart-1">{{ output1|safe }}</div>
+
+
+            <br>
+                <script src="{% static 'phish/js/main.js' %}"></script>
+
+		</div>
+		<div class="container">
+            <div class="row" id="chart-2">{{ output2|safe }}</div>
+
+
+            <br>
+                <script src="{% static 'phish/js/main.js' %}"></script>
+
+		</div>
+	</div>
+
+
+  		<script src="{% static 'phish/js/classie.js' %}"></script>
+		<script src="{% static 'phish/js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'phish/js/smoothscroll.js' %}"></script>
+		<script src="{% static 'phish/js/main.js' %}"></script>
+
+</body>
+</html>
