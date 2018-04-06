@@ -14,9 +14,9 @@ from sklearn.tree import export_graphviz
 
 
 def load_data():
-    phish_data = genfromtxt('../data/extracted_Phish.csv', delimiter=',')
+    phish_data = genfromtxt('data/extracted_Phish.csv', delimiter=',')
 
-    non_phish_data = genfromtxt('../data/extracted_Non_Phish.csv', delimiter=',')
+    non_phish_data = genfromtxt('data/extracted_Non_Phish.csv', delimiter=',')
     # phish_data=np.delete(phish_data,11,1)
     # non_phish_data= np.delete(non_phish_data,11,1)
 

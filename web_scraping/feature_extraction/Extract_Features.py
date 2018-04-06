@@ -325,7 +325,7 @@ def Redirect_html(url,result,index):
 	else:
 		result[index] =1
 		return 1
-	
+		
 def Iframe(url,result,index):
 	print(threading.current_thread().name,index)
 
@@ -480,26 +480,7 @@ def threader():
 		url = q.get()
 		run_thread(url)
 		q.task_done()
-	
-"""functions = [having_IP_Address,
-			URL_Length,
-			Shortining_Service,
-			having_At_Symbol,
-			double_slash_redirecting,
-			Prefix_Suffix,
-			having_Sub_Domain,
-			Domain_registeration_length,
-			port,
-			HTTPS_token,
-			URL_of_Anchor,
-			Redirect,
-			Iframe,
-			age_of_domain,
-			sum_of_symbole_eq,
-			sum_of_symbole_perc,
-			sum_of_symbole_and,
-			exist_of_symbole_ab,
-			exist_of_symbole_anch]"""
+
 		
 data_size=12000
 i=0
@@ -513,46 +494,39 @@ headers = { 'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)' }
 q = Queue()
 
 if __name__ == '__main__':
-	t1= datetime.now()
 	for x in range(50):
 			t = threading.Thread(target=threader)
 			t.daemon = True
 			t.start()
-	with open('data/extracted_Non_Phish.csv',"w",newline='') as result_file:
+	with open('data/extracted_Phish.csv',"w",newline='') as result_file:
 		writer = csv.writer(result_file, dialect='excel',delimiter=',')
-		# json_data=open('verified_online12.json').read()
-		# data = json.loads(json_data)
+		json_data=open('data/verified_online.json').read()
+		data = json.loads(json_data)
 		#creating a number of threads 
 		#these threads will be waiting for any url to be put in the queue so they process it
-		with open('top-1m.csv', 'r') as f:
-			data = csv.reader(f)
-			for row in data:
-				url='http://www.'+str(row[1])
-				url = url.rstrip()
-				try:
-					Response=requests.get(url,headers=headers, timeout=my_timeout)
-					Response.raise_for_status()
-					q.put(url)
-					range_+=1
-				except KeyboardInterrupt:
-					print ("You pressed Ctrl+C")
-					result_file.close()
-					t2 = datetime.now()
-					total = t2 - t1
-					print('Scanning Completed in: ', total)
-					sys.exit()
-				except requests.exceptions.RequestException as e:
-					print('Exception :',e.__class__)
-				except Exception as e:
-					print('Exception :',e.__class__)
-				except :
-					print('OTHER Exception ')
-				
-				if(range_==data_size):
-					q.join()
-					result_file.close()
-					t2 = datetime.now()
-					total = t2 - t1
-					print('Scanning Completed in: ', total)
-					break
-					print(i)
+		for row in data:
+			url=str(row['url'])
+			url = url.rstrip()
+			# url='https://www.facebook.com/'
+			try:
+				Response=requests.get(url,headers=headers, timeout=my_timeout)
+				Response.raise_for_status()
+				q.put(url)
+				range_+=1
+			except KeyboardInterrupt:
+				print ("You pressed Ctrl+C")
+				result_file.close()
+				sys.exit()
+			except requests.exceptions.RequestException as e:
+				print('Exception :',e.__class__)
+			except Exception as e:
+				print('Exception :',e.__class__)
+			except :
+				print('OTHER Exception ')
+			
+			if(range_==data_size):
+				q.join()
+				result_file.close()
+				print(range_)
+				break
+				print(i)
