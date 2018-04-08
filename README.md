@@ -1,16 +1,18 @@
 # PhishRod
 
-![main_page](https://user-images.githubusercontent.com/36813986/117393890-fcb27200-aeec-11eb-9d7a-d6359da34a78.png)
+![main_page_720](https://user-images.githubusercontent.com/36813986/117495614-ca952480-af6d-11eb-8a7a-fd9f1edc22d4.PNG)
 
-The goal of this project is to provide minimalistic django project template that everyone can use, which _just works_ out of the box and has the basic setup you can expand on. 
+<b>PhishRod</b> is a web application that leverages machine learning to detect phishing websites.
+The goal is to become a platform with a big community that fights against the ever growing phishing attacks :skull:
 
-Template is written with django 1.11 and python 3 in mind.
+Until then, we'll keep _Fishing what's Phishing You_ :shark:
 
 ### Features
 
 * Single web application
 
 * Allows the user to:
+
     * Identify phishing attacks
     
     * Give their feedback by writing reviews
@@ -20,6 +22,7 @@ Template is written with django 1.11 and python 3 in mind.
 * A contact form that gets sent to the Admin email
 
 * An Admin space to:
+
     * Review the usage of the application
     
     * Visualize users’ reviews
@@ -27,38 +30,23 @@ Template is written with django 1.11 and python 3 in mind.
 
 # Getting Started
 
-### Requirements
+## Requirements
 
-* Python (3.6 +)
-* Django (2.4 +)
+For building and running the application you need:
+
+- [Python 3.6](https://www.python.org/)
+- [Django 2](https://www.djangoproject.com/download/)
 
 We **highly recommend** to use these exact versions of Python and Django because this project is not tested with the 
 other releases.
 
-### Installation
+## Installation
 
-For this step, we recommend setting up a virtual environment and activating it, this is optional:
- [Python 3 Virtual Environment Tutorial](https://docs.python.org/3/tutorial/venv.html)
-
-Install project dependencies:
-
-    $ pip install -r requirements.txt
-
-    
-Then simply apply the migrations:
-
-    $ python manage.py migrate
-    
-
-You can now run the development server:
-
-    $ python manage.py runserver
-    
-# Classification model Setup
+### Classification Model Setup
 This section is optional if you are just looking to use the application since it is already set up with a model,
  but if you want to tweak on the classification model used then fellow these steps.
  
-### Feature Extraction
+#### 1- Feature Extraction
 The first step to create our classification model PhishRod will be using to identify phishing websites
 is to construct a labeled dataset to train the model with. 
 
@@ -87,7 +75,7 @@ To run the extraction scripts simply use these commands:
     $ python web_scraping\feature_extraction\Extract_Features_Non_Phish.py
 
 
-### Training the model
+#### 2- Training & Exporting the Model
 
 After the previous step we should have 2 new files under `data` called `extracted_Non_Phish.csv` and `extracted_Phish.csv`
 that will serve as the input to our model training:
@@ -97,9 +85,28 @@ that will be used after to verify the URL entered to PhishRod. It also has a sec
 and visualise the different aspects of it such as feature importance.
 So if any changes need to be brought to PhishRod classification model it should live there.
 
-To run the classifier script on have the model, simply run
+To run the classifier script on have the model, simply run:
 
     $ python classifier/classifier.py
+    
+the result should be the model dump at `classifier/classifier.pkl` so make sure it exists before moving to the next step.
+
+### Running the application locally
+
+For this step, we recommend setting up a virtual environment and activating it, this is optional:
+ [Python 3 Virtual Environment Tutorial](https://docs.python.org/3/tutorial/venv.html)
+
+Install project dependencies:
+
+    $ pip install -r requirements.txt
+
+Then simply apply the migrations:
+
+    $ python manage.py migrate
+
+You can now run the development server:
+
+    $ python manage.py runserver
 
 
 # Usage
@@ -113,27 +120,33 @@ When scrolling the user will find some statistics around recent tests, and a way
 ![page_scroll](https://user-images.githubusercontent.com/36813986/117393896-ffad6280-aeec-11eb-9b7b-086e1b150392.png)
 
 
-### Identifying a phishing website
+## Identifying a phishing website
 After Sending a URL the user will have the results shortly after:
 * Phish not detected: a lock animation will appear, and a rating space for the user to send his rating on the results
-![phish_not_detected](https://user-images.githubusercontent.com/36813986/117427822-5337a480-af1d-11eb-9bb4-ca08a50d1efe.png)
+
+    ![phish_not_detected](https://user-images.githubusercontent.com/36813986/117427822-5337a480-af1d-11eb-9bb4-ca08a50d1efe.png)
 
 * Phish detected: a Bomb animation will appear, and a rating space for the user to send his rating on the results
-![phish_detected](https://user-images.githubusercontent.com/36813986/117427799-4e72f080-af1d-11eb-9112-4cb488b11f53.png)
+
+    ![phish_detected](https://user-images.githubusercontent.com/36813986/117427799-4e72f080-af1d-11eb-9112-4cb488b11f53.png)
 
 
-### Administration
+## Administration
 
 PhishRod is equipped with an Admin space where an administrator will be able to review any recent activities. 
 To access it, got to [localhost/admin](http://127.0.0.1:8000/admin)
 *   A login page will appear where the admin can provide his credentials:
-![admin_login](https://user-images.githubusercontent.com/36813986/117428152-b45f7800-af1d-11eb-89d8-d4620f2a406c.png)
+
+    ![admin_login](https://user-images.githubusercontent.com/36813986/117428152-b45f7800-af1d-11eb-89d8-d4620f2a406c.png)
 
 *   After the successful login, the admin will have a simple landing page:
-![admin_main_menu](https://user-images.githubusercontent.com/36813986/117393885-fa501800-aeec-11eb-91fc-08702e81fe29.png)
+
+    ![admin_main_menu](https://user-images.githubusercontent.com/36813986/117393885-fa501800-aeec-11eb-91fc-08702e81fe29.png)
 
 *   The Admin can access the reviews by clicking on the Reviews button:
-![admin_reviews](https://user-images.githubusercontent.com/36813986/117393886-fb814500-aeec-11eb-8d62-a52cc2f95080.png)
+
+    ![admin_reviews](https://user-images.githubusercontent.com/36813986/117393886-fb814500-aeec-11eb-8d62-a52cc2f95080.png)
 
 *   The Admin can access the URLs recently entered by clicking on the URL button:
-![admin_url](https://user-images.githubusercontent.com/36813986/117393888-fc19db80-aeec-11eb-959c-ae3e0b997c36.png)
+
+    ![admin_url](https://user-images.githubusercontent.com/36813986/117393888-fc19db80-aeec-11eb-959c-ae3e0b997c36.png)

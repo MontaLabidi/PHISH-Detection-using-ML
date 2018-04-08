@@ -1,8 +1,12 @@
+# Feature Extraction
+
+
 Phishing websites have several criteria that distinguish them from legitimate ones. To make an end to phishing,
  many solutions were proposed in the literature. 
  We were mostly motivated by the [survey suggested by Dr Rami M. Mohammad](http://eprints.hud.ac.uk/id/eprint/24236/), a software engineer graduated
   from the University of Huddersfield.
 
+### Feature Groups
 These features could be divided into 4 groups:
 
 -   **URL based Features** : These are the features that analyze the URL of the website.
@@ -15,8 +19,10 @@ These features could be divided into 4 groups:
 
 Currently, this project could extract 19 different features from each website.
 
-Below, we give you the names of the features used by their group:
 
+### Feature Details
+
+Below, we give you the names of the features used by their group:
 
 |Feature Group | Features' Names |
 |--------------------------|------------------------------------------------------------------|
