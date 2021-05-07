@@ -10,7 +10,7 @@ constantly==15.1.0
 cycler==0.10.0
 decorator==4.2.1
 Django==2.1.4
-djangorestframework==3.9.0
+djangorestframework==3.11.2
 entrypoints==0.2.3
 fake-useragent==0.1.10
 future==0.16.0
